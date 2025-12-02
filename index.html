@@ -325,8 +325,6 @@
         <nav class="nav-links">
             <a href="#company">公司与产品</a>
             <a href="#industry">行业与竞品</a>
-            <a href="#model">商业模式</a>
-            <a href="#delivery">配送模式</a>
             <a href="#strategy">市场策略</a>
             <a href="#summary">总结</a>
         </nav>
@@ -335,12 +333,11 @@
 
 <section id="hero">
     <div class="container">
-        <span class="tag tag-blue">Market Insight · 应聘笔试材料</span>
+        <span class="tag tag-blue">Market Insight</span>
         <h1>INNwowo 市场分析与<br>拓展策略概览</h1>
         <p class="subtitle">
             结合 INNwowo 官网、小程序及公开行业数据，对公司定位、产品体系、商业模式、
-            配送方案及未来市场策略做出结构化分析。内容以可验证信息和清晰逻辑为主，
-            避免夸张陈述。
+            配送方案及未来市场策略做出结构化分析。
         </p>
         <a href="#company" class="btn">开始阅读</a>
     </div>
@@ -463,136 +460,6 @@
                 <span class="pill">INNwowo · 商家自营 / SaaS 收费</span>
                 <span style="font-size:0.8rem;color:#9ca3af;">VS</span>
                 <span class="pill">外卖平台 · 流量与骑手 / 抽佣收费</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 商业模式 -->
-<section id="model">
-    <div class="container">
-        <h2>商业模式分析<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Business Model (Based on Public Information & SaaS Patterns)</span></h2>
-
-        <div class="grid-2">
-            <div class="card">
-                <span class="tag tag-green">收入构成 · 方向</span>
-                <h3>1. 系统订阅与服务费</h3>
-                <p>
-                    结合行业惯例与官网呈现功能，可以合理判断 INNwowo 的主要收入仍来自
-                    <strong>SaaS 订阅与服务费</strong>，而非平台抽佣。
-                </p>
-                <ul class="feature-list">
-                    <li>点餐系统 / 小程序系统的月费或年费</li>
-                    <li>多门店或高级功能的套餐升级费</li>
-                    <li>菜单录入、店铺搭建等一次性服务费</li>
-                </ul>
-                <p style="font-size:0.86rem;">
-                    这种模式与海外其他扫码点餐 SaaS（如 Mr Yum、Square Online）的做法相近，收入结构清晰、毛利较高。
-                </p>
-            </div>
-
-            <div class="card">
-                <span class="tag tag-blue">增值收入 · 支付与配送</span>
-                <h3>2. 支付通道与一键叫骑手</h3>
-                <p>
-                    在小程序与线上点餐场景中，每一笔订单都需要完成支付与配送调用，这是典型的增值收入来源：
-                </p>
-                <ul class="feature-list">
-                    <li>通过 Stripe / 微信支付 等支付通道收取小比例服务费</li>
-                    <li>为商家对接第三方骑手网络时，按配送费的一定比例获得技术服务收入</li>
-                    <li>在不直接抽取餐费佣金的前提下，形成稳定但相对克制的交易型收入</li>
-                </ul>
-                <p style="font-size:0.86rem;">
-                    对商家而言，这类费用通常被视为“支付和配送成本”，相比传统平台抽佣要温和得多。
-                </p>
-            </div>
-        </div>
-
-        <div class="card" style="margin-top:32px;">
-            <span class="tag tag-orange">总结</span>
-            <p style="margin-bottom:0.4rem;">
-                综合来看，INNwowo 选择的并不是重投入的“平台抽佣 + 自建骑手”模式，而是轻量的
-                <strong>“SaaS 订阅 + 支付与配送技术服务”</strong> 模式，符合一家中小规模技术公司的资源现实，
-                也符合餐饮 SaaS 行业的普遍做法。
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- 配送模式 -->
-<section id="delivery">
-    <div class="container">
-        <h2>配送模式与第三方骑手网络<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Delivery Model: Platform vs Aggregated Couriers</span></h2>
-
-        <div class="card" style="margin-bottom:24px;">
-            <span class="tag tag-blue">一键呼叫骑手 · 产品理解</span>
-            <p style="margin-bottom:0.6rem;">
-                从官网“一键呼叫骑手”的介绍可以看出，INNwowo 并非自建骑手队伍，而是将多家
-                <strong>第三方即时配送平台</strong>（如同城快递、按单计费骑手）集成进系统，为商家提供按需调用的配送能力。
-            </p>
-            <p style="margin-bottom:0;">
-                换句话说：顾客在小程序下单，订单归属仍是商家；配送则由外部骑手完成，INNwowo 提供的是
-                <strong>技术连接和调度界面</strong>。
-            </p>
-        </div>
-
-        <h3 style="margin-bottom:12px;">1. 平台配送 vs 第三方聚合配送</h3>
-        <div class="table-scroll">
-            <table>
-                <thead>
-                    <tr>
-                        <th>维度</th>
-                        <th>外卖平台（Deliveroo / HungryPanda）</th>
-                        <th>INNwowo + 第三方骑手</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>流量来源</td>
-                        <td>平台 App 提供大量新客流量</td>
-                        <td>商家自营流量，小程序更多面向熟客与私域</td>
-                    </tr>
-                    <tr>
-                        <td>收费结构</td>
-                        <td>按订单金额抽佣，通常 20%–30%+</td>
-                        <td>不抽取餐费佣金，主要是配送与技术服务费</td>
-                    </tr>
-                    <tr>
-                        <td>配送队伍</td>
-                        <td>平台自有骑手网络，调度体系成熟</td>
-                        <td>调用第三方即时配送服务，按距离与时段计费</td>
-                    </tr>
-                    <tr>
-                        <td>责任与体验</td>
-                        <td>平台承担更多用户投诉与补偿责任</td>
-                        <td>问题更多由商家与配送方协调，责任边界更分散</td>
-                    </tr>
-                    <tr>
-                        <td>适用场景</td>
-                        <td>需要持续获客、接收大量外卖订单的餐厅</td>
-                        <td>希望降低整体成本、服务熟客与社区用户的餐厅</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h3 style="margin-top:28px;margin-bottom:10px;">2. 第三方配送模式的优势与局限</h3>
-        <div class="grid-2">
-            <div class="card">
-                <span class="tag tag-green">优势</span>
-                <ul class="feature-list">
-                    <li>费用结构相对可控，没有高比例餐费抽佣</li>
-                    <li>商家保留用户数据与触达能力，利于私域运营</li>
-                    <li>适合已有稳定客源的中餐外卖店、奶茶店等</li>
-                </ul>
-            </div>
-            <div class="card">
-                <span class="tag tag-orange">局限</span>
-                <ul class="feature-list">
-                    <li>不自带流量，无法替代平台带来的新客曝光</li>
-                    <li>第三方骑手网络在高峰或恶劣天气下稳定性受限</li>
-                    <li>部分投诉或差评需要商家自己承担与处理</li>
-                </ul>
             </div>
         </div>
     </div>

@@ -1,1 +1,718 @@
-# INNwowo
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNwowo 市场分析与拓展策略 | Market Insight & Strategy</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #0ea5e9;
+            --accent-dark: #0284c7;
+            --secondary: #64748b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+
+            --container-width: 1100px;
+            --section-padding: 80px 0;
+            --card-radius: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 18px 45px rgba(15,23,42,0.18);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.25s; }
+        ul { list-style: none; }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        h1 { font-size: 2.8rem; letter-spacing: -0.02em; }
+        h2 { font-size: 2.1rem; letter-spacing: -0.01em; margin-bottom: 2rem; text-align: center; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        p { margin-bottom: 1rem; color: var(--secondary); font-size: 0.98rem; }
+
+        .text-accent { color: var(--accent); }
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            max-width: 720px;
+            margin: 0 auto 2.4rem auto;
+            text-align: center;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: var(--section-padding);
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child { border-bottom: none; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 11px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(14,165,233,0.4);
+        }
+        .btn:hover { background-color: var(--accent-dark); }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1rem;
+        }
+        .tag-blue { background: #e0f2fe; color: #0369a1; }
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+        .tag-green { background: #dcfce7; color: #15803d; }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(248,250,252,0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+            letter-spacing: -0.01em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a { color: var(--secondary); }
+        .nav-links a:hover { color: var(--accent); }
+
+        #hero {
+            padding: 96px 0 80px;
+            background: radial-gradient(circle at top, #e0f2fe 0%, #f8fafc 60%);
+            text-align: center;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 8px;
+            color: var(--secondary);
+            font-size: 0.93rem;
+        }
+        .feature-list li::before {
+            content: "•";
+            position: absolute;
+            left: 7px;
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .swot-box {
+            background: #f8fafc;
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+            margin-top: 0.8rem;
+        }
+        .swot-item {
+            font-size: 0.84rem;
+            margin-bottom: 4px;
+        }
+        .swot-label {
+            font-weight: 700;
+            margin-right: 4px;
+            color: var(--primary);
+        }
+
+        .diff-box {
+            margin-top: 36px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            padding: 32px 32px 28px;
+            border-radius: var(--card-radius);
+            text-align: center;
+        }
+        .diff-box h3 { color: #fff; margin-bottom: 0.6rem; }
+        .diff-comparison {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid #334155;
+            font-size: 0.8rem;
+        }
+
+        .funnel-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 32px 0 8px;
+            position: relative;
+        }
+        .funnel-step {
+            flex: 1;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 18px 14px;
+            border-radius: 8px;
+            margin: 0 8px;
+            text-align: center;
+            position: relative;
+        }
+        .funnel-step h4 {
+            margin-bottom: 4px;
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+        .funnel-step p {
+            font-size: 0.82rem;
+            margin-bottom: 0;
+        }
+        .funnel-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cbd5e1;
+            font-size: 1.4rem;
+        }
+
+        .market-split {
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            display: flex;
+            margin-top: 20px;
+        }
+        .split-col {
+            flex: 1;
+            padding: 26px 24px;
+        }
+        .split-col:first-child {
+            background: #fff;
+            border-right: 1px solid var(--border);
+        }
+        .split-col:last-child {
+            background: #eff6ff;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background: #e5f3ff;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        footer {
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid-2, .grid-3, .market-split {
+                display: flex;
+                flex-direction: column;
+            }
+            .funnel-container {
+                flex-direction: column;
+            }
+            .funnel-step {
+                margin: 8px 0;
+            }
+            .funnel-step:not(:last-child)::after {
+                content: "↓";
+                right: 50%;
+                top: auto;
+                bottom: -18px;
+                transform: translateX(50%);
+            }
+            .nav-links { display: none; }
+            header { padding: 0.6rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-inner">
+        <div class="logo">INNwowo 市场分析报告</div>
+        <nav class="nav-links">
+            <a href="#company">公司与产品</a>
+            <a href="#industry">行业与竞品</a>
+            <a href="#model">商业模式</a>
+            <a href="#delivery">配送模式</a>
+            <a href="#strategy">市场策略</a>
+            <a href="#summary">总结</a>
+        </nav>
+    </div>
+</header>
+
+<section id="hero">
+    <div class="container">
+        <span class="tag tag-blue">Market Insight · 应聘笔试材料</span>
+        <h1>INNwowo 市场分析与<br>拓展策略概览</h1>
+        <p class="subtitle">
+            结合 INNwowo 官网、小程序及公开行业数据，对公司定位、产品体系、商业模式、
+            配送方案及未来市场策略做出结构化分析。内容以可验证信息和清晰逻辑为主，
+            避免夸张陈述。
+        </p>
+        <a href="#company" class="btn">开始阅读</a>
+    </div>
+</section>
+
+<!-- Q1 公司与产品 -->
+<section id="company">
+    <div class="container">
+        <h2>公司与产品体系<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Company & Product Ecosystem</span></h2>
+
+        <div class="grid-3">
+            <div class="card">
+                <span class="tag tag-blue">Positioning</span>
+                <h3>餐饮数字化工具（SaaS）</h3>
+                <p>
+                    从官网与小程序可以看到，INNwowo 为海外餐饮商户提供扫码点餐、线上点餐等数字化工具，
+                    本质属于餐饮场景的 SaaS 服务，而非传统外卖平台。
+                </p>
+                <ul class="feature-list">
+                    <li>减少前厅点单的人力依赖</li>
+                    <li>统一管理堂食与外卖订单</li>
+                    <li>帮助商家在微信生态中自营外卖</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-green">Product · 本地英文系统</span>
+                <h3>Dine-in & Online Ordering</h3>
+                <p>面向英国本地客群的 Web 端英文点餐系统，无需下载 App，商家可通过后台配置菜单与价格。</p>
+                <ul class="feature-list">
+                    <li>堂食扫码点餐（Dine-in QR）</li>
+                    <li>英文菜单与在线支付</li>
+                    <li>适配本地餐厅、快餐店、咖啡店等</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-orange">Product · 小程序系统</span>
+                <h3>WeChat 外卖小程序</h3>
+                <p>依托微信生态，为华人餐厅与用户提供线上点餐、外卖和自取入口，是商家构建私域外卖能力的重要工具。</p>
+                <ul class="feature-list">
+                    <li>微信小程序点餐与支付</li>
+                    <li>商家可运营会员、老客与活动</li>
+                    <li>适配中餐、奶茶、烧烤等华人高频品类</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 行业与竞品 -->
+<section id="industry">
+    <div class="container">
+        <h2>行业发展与竞品格局<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Industry Trends & Competitive Landscape</span></h2>
+
+        <div class="grid-3" style="margin-bottom:32px;">
+            <div>
+                <h4 class="text-accent">📈 在线外卖仍在增长</h4>
+                <p style="font-size:0.9rem;">
+                    公开数据表明，英国在线外卖市场规模已超过百亿英镑，中餐等亚洲菜系长期位列订单前列，
+                    为外卖工具与平台提供了稳定需求基础。
+                </p>
+            </div>
+            <div>
+                <h4 class="text-accent">💰 人工与租金压力推动数字化</h4>
+                <p style="font-size:0.9rem;">
+                    餐饮业平均时薪持续上升，小店更需要通过扫码点餐、线上点餐等方式减少前厅人力占用，
+                    优化翻台效率。
+                </p>
+            </div>
+            <div>
+                <h4 class="text-accent">📱 扫码点餐已成为习惯</h4>
+                <p style="font-size:0.9rem;">
+                    疫情后英国消费者对 QR 点餐接受度显著提高，尤其是年轻客群，降低了 INNwowo 这类产品的教育成本。
+                </p>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <h3>Deliveroo</h3>
+                    <span class="tag tag-blue">外卖平台</span>
+                </div>
+                <p>
+                    英国主流综合外卖平台之一，提供 App 流量与骑手配送网络。根据公开报道，商家通常需承担较高的平台佣金。
+                </p>
+                <div class="swot-box">
+                    <div class="swot-item"><span class="swot-label">S</span> 品牌与用户基础强，覆盖区域广，骑手网络成熟。</div>
+                    <div class="swot-item"><span class="swot-label">W</span> 抽佣比例较高，商家难以沉淀用户数据。</div>
+                    <div class="swot-item"><span class="swot-label">O</span> 为商家提供稳定新客来源。</div>
+                    <div class="swot-item"><span class="swot-label">T</span> 商家同时寻求自营外卖工具以降低平台依赖度。</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <h3>HungryPanda</h3>
+                    <span class="tag tag-orange">华人垂直平台</span>
+                </div>
+                <p>
+                    面向华人用户的外卖平台，聚焦中餐与亚洲餐厅，在华人圈有较高渗透率，同样采用抽佣模式。
+                </p>
+                <div class="swot-box">
+                    <div class="swot-item"><span class="swot-label">S</span> 对中餐业务理解深，聚焦华人需求。</div>
+                    <div class="swot-item"><span class="swot-label">W</span> 用户主要集中在华人圈，增量空间有限。</div>
+                    <div class="swot-item"><span class="swot-label">O</span> 更适合作为 INNwowo 客户的“引流来源”。</div>
+                    <div class="swot-item"><span class="swot-label">T</span> 商家希望同时建设自有渠道，降低单一平台风险。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="diff-box">
+            <h3>差异化定位：平台 vs 工具</h3>
+            <p style="font-size:0.92rem;">
+                Deliveroo / HungryPanda 等平台以“流量 + 骑手网络”为核心，通过抽佣收费；
+                INNwowo 则更接近 “餐饮 SaaS 工具”，帮助商家自营点餐与外卖，不参与高抽佣的平台竞争。
+            </p>
+            <div class="diff-comparison">
+                <span class="pill">INNwowo · 商家自营 / SaaS 收费</span>
+                <span style="font-size:0.8rem;color:#9ca3af;">VS</span>
+                <span class="pill">外卖平台 · 流量与骑手 / 抽佣收费</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 商业模式 -->
+<section id="model">
+    <div class="container">
+        <h2>商业模式分析<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Business Model (Based on Public Information & SaaS Patterns)</span></h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <span class="tag tag-green">收入构成 · 方向</span>
+                <h3>1. 系统订阅与服务费</h3>
+                <p>
+                    结合行业惯例与官网呈现功能，可以合理判断 INNwowo 的主要收入仍来自
+                    <strong>SaaS 订阅与服务费</strong>，而非平台抽佣。
+                </p>
+                <ul class="feature-list">
+                    <li>点餐系统 / 小程序系统的月费或年费</li>
+                    <li>多门店或高级功能的套餐升级费</li>
+                    <li>菜单录入、店铺搭建等一次性服务费</li>
+                </ul>
+                <p style="font-size:0.86rem;">
+                    这种模式与海外其他扫码点餐 SaaS（如 Mr Yum、Square Online）的做法相近，收入结构清晰、毛利较高。
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-blue">增值收入 · 支付与配送</span>
+                <h3>2. 支付通道与一键叫骑手</h3>
+                <p>
+                    在小程序与线上点餐场景中，每一笔订单都需要完成支付与配送调用，这是典型的增值收入来源：
+                </p>
+                <ul class="feature-list">
+                    <li>通过 Stripe / 微信支付 等支付通道收取小比例服务费</li>
+                    <li>为商家对接第三方骑手网络时，按配送费的一定比例获得技术服务收入</li>
+                    <li>在不直接抽取餐费佣金的前提下，形成稳定但相对克制的交易型收入</li>
+                </ul>
+                <p style="font-size:0.86rem;">
+                    对商家而言，这类费用通常被视为“支付和配送成本”，相比传统平台抽佣要温和得多。
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:32px;">
+            <span class="tag tag-orange">总结</span>
+            <p style="margin-bottom:0.4rem;">
+                综合来看，INNwowo 选择的并不是重投入的“平台抽佣 + 自建骑手”模式，而是轻量的
+                <strong>“SaaS 订阅 + 支付与配送技术服务”</strong> 模式，符合一家中小规模技术公司的资源现实，
+                也符合餐饮 SaaS 行业的普遍做法。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 配送模式 -->
+<section id="delivery">
+    <div class="container">
+        <h2>配送模式与第三方骑手网络<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Delivery Model: Platform vs Aggregated Couriers</span></h2>
+
+        <div class="card" style="margin-bottom:24px;">
+            <span class="tag tag-blue">一键呼叫骑手 · 产品理解</span>
+            <p style="margin-bottom:0.6rem;">
+                从官网“一键呼叫骑手”的介绍可以看出，INNwowo 并非自建骑手队伍，而是将多家
+                <strong>第三方即时配送平台</strong>（如同城快递、按单计费骑手）集成进系统，为商家提供按需调用的配送能力。
+            </p>
+            <p style="margin-bottom:0;">
+                换句话说：顾客在小程序下单，订单归属仍是商家；配送则由外部骑手完成，INNwowo 提供的是
+                <strong>技术连接和调度界面</strong>。
+            </p>
+        </div>
+
+        <h3 style="margin-bottom:12px;">1. 平台配送 vs 第三方聚合配送</h3>
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>维度</th>
+                        <th>外卖平台（Deliveroo / HungryPanda）</th>
+                        <th>INNwowo + 第三方骑手</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>流量来源</td>
+                        <td>平台 App 提供大量新客流量</td>
+                        <td>商家自营流量，小程序更多面向熟客与私域</td>
+                    </tr>
+                    <tr>
+                        <td>收费结构</td>
+                        <td>按订单金额抽佣，通常 20%–30%+</td>
+                        <td>不抽取餐费佣金，主要是配送与技术服务费</td>
+                    </tr>
+                    <tr>
+                        <td>配送队伍</td>
+                        <td>平台自有骑手网络，调度体系成熟</td>
+                        <td>调用第三方即时配送服务，按距离与时段计费</td>
+                    </tr>
+                    <tr>
+                        <td>责任与体验</td>
+                        <td>平台承担更多用户投诉与补偿责任</td>
+                        <td>问题更多由商家与配送方协调，责任边界更分散</td>
+                    </tr>
+                    <tr>
+                        <td>适用场景</td>
+                        <td>需要持续获客、接收大量外卖订单的餐厅</td>
+                        <td>希望降低整体成本、服务熟客与社区用户的餐厅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 style="margin-top:28px;margin-bottom:10px;">2. 第三方配送模式的优势与局限</h3>
+        <div class="grid-2">
+            <div class="card">
+                <span class="tag tag-green">优势</span>
+                <ul class="feature-list">
+                    <li>费用结构相对可控，没有高比例餐费抽佣</li>
+                    <li>商家保留用户数据与触达能力，利于私域运营</li>
+                    <li>适合已有稳定客源的中餐外卖店、奶茶店等</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="tag tag-orange">局限</span>
+                <ul class="feature-list">
+                    <li>不自带流量，无法替代平台带来的新客曝光</li>
+                    <li>第三方骑手网络在高峰或恶劣天气下稳定性受限</li>
+                    <li>部分投诉或差评需要商家自己承担与处理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 市场策略 -->
+<section id="strategy">
+    <div class="container">
+        <h2>若入职后的市场拓展思路<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Go-to-Market Strategy as a Team Member</span></h2>
+
+        <h3 style="margin-bottom:16px;">1. 获客渠道：线下为主，线上与渠道协同</h3>
+        <div class="grid-3" style="margin-bottom:32px;">
+            <div class="card" style="border-top:3px solid var(--accent);">
+                <h4>🏢 线下直访餐厅</h4>
+                <p style="font-size:0.9rem;">
+                    以 Chinatown、学生区商业街为重点，按菜系与店型分批拜访。
+                    现场演示扫码点餐流程，将“节省人力 + 减少误单”用简单数字算清楚。
+                </p>
+            </div>
+            <div class="card" style="border-top:3px solid var(--success);">
+                <h4>📢 行业内容与社群</h4>
+                <p style="font-size:0.9rem;">
+                    用公众号、小红书、抖音等平台输出“数字化转型小贴士”，
+                    例如《外卖平台抽佣高时，餐厅可以做什么》，帮助品牌在老板圈建立“靠谱工具”的印象。
+                </p>
+            </div>
+            <div class="card" style="border-top:3px solid var(--primary-light);">
+                <h4>🤝 渠道合作</h4>
+                <p style="font-size:0.9rem;">
+                    与食材供应商、奶茶原料公司、华人商会等合作，
+                    在他们已有的商户网络中嵌入 INNwowo 介绍与演示机会，以降低获客成本。
+                </p>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom:16px;">2. 转化与留存：基于漏斗的具体动作</h3>
+        <div class="funnel-container">
+            <div class="funnel-step">
+                <h4>线索收集</h4>
+                <p>建立餐厅名单库，按菜系 / 外卖占比 / 位置进行标记。</p>
+            </div>
+            <div class="funnel-step">
+                <h4>方案演示</h4>
+                <p>用真实菜单示例快速搭建 Demo，现场展示下单路径和结算方式。</p>
+            </div>
+            <div class="funnel-step">
+                <h4>上线与试用</h4>
+                <p>协助完成菜单录入和基本配置，设置 1–2 周的观察期。</p>
+            </div>
+            <div class="funnel-step">
+                <h4>持续跟进</h4>
+                <p>通过微信或邮件定期收集反馈，提供简单的数据回顾与优化建议。</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top:28px;margin-bottom:12px;">3. 本地市场与华人市场的打法区分</h3>
+        <div class="market-split">
+            <div class="split-col">
+                <h4>🇬🇧 英国本地餐饮</h4>
+                <p style="font-size:0.94rem;">
+                    重点沟通 <strong>节省人力与减少误单</strong> 的价值，强调英文扫码点餐与在线支付的成熟体验，
+                    并与现有 POS / 支付系统做简洁对接说明。
+                </p>
+                <ul class="feature-list">
+                    <li>主推英文扫码点餐与桌台管理</li>
+                    <li>可结合“人力成本上升”的公开数据进行算账式沟通</li>
+                    <li>优先开发客流稳定但人手紧张的餐厅</li>
+                </ul>
+            </div>
+            <div class="split-col">
+                <h4>🇨🇳 华人餐饮与留学生圈</h4>
+                <p style="font-size:0.94rem;">
+                    重点沟通 <strong>降低平台依赖、沉淀老客</strong> 的价值，用微信生态的天然优势配合商家已有社群资源。
+                </p>
+                <ul class="feature-list">
+                    <li>主推小程序外卖、自取与会员功能</li>
+                    <li>鼓励商家通过店内物料、社群拉新引导顾客转到自营渠道</li>
+                    <li>在唐人街、大学周边建立典型样板店，便于复制经验</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 总结 -->
+<section id="summary" style="background:#ffffff;">
+    <div class="container" style="max-width:820px;">
+        <h2>结论与个人思考<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Summary & Reflections</span></h2>
+
+        <div class="card" style="background:var(--bg-body);">
+            <ul class="feature-list">
+                <li style="margin-bottom:0.8rem;">
+                    <strong>定位清晰：</strong>INNwowo 并不与外卖巨头正面竞争流量，而是基于扫码点餐与小程序外卖，
+                    为商家提供自营能力，这是轻量但长期的赛道。
+                </li>
+                <li style="margin-bottom:0.8rem;">
+                    <strong>模式务实：</strong>通过订阅费、支付通道及一键叫骑手等技术服务获取收入，
+                    避免了重资产的自建骑手模式，符合中小技术公司的经营现实。
+                </li>
+                <li style="margin-bottom:0.8rem;">
+                    <strong>场景有边界：</strong>SaaS + 第三方配送模式在降低成本方面有优势，但无法完全替代平台的获客与调度能力，
+                    未来更可能与平台并存，而非二选一。
+                </li>
+                <li>
+                    <strong>执行思路：</strong>如果有机会加入团队，我会从「线下餐厅集群 + 行业内容输出 + 渠道合作」三条线入手，
+                    用简单可衡量的指标（开店数、活跃店比例、商家留存）来检验策略效果，并不断迭代。
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p style="margin-bottom:6px;">INNwowo Market Insight & Strategy · Personal Submission</p>
+        <p style="opacity:0.75;">
+            本页面基于公开资料与个人对英国餐饮及数字化行业的理解，仅作为应聘市场岗位的分析展示使用。
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

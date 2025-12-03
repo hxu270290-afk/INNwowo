@@ -4,60 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INNwowo 市场分析与拓展策略 | Market Insight & Strategy</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- 引入 AOS 动画库样式 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #0ea5e9;
-            --accent-dark: #0284c7;
-            --secondary: #64748b;
+            /* 核心色板 - 更深邃高级的蓝紫色系 */
             --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --border: #e2e8f0;
-            --success: #10b981;
+            --bg-surface: #ffffff;
+            --text-main: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            
+            /* 渐变色 */
+            --gradient-accent: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --gradient-surface: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
 
-            --container-width: 1100px;
-            --section-padding: 80px 0;
-            --card-radius: 12px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-lg: 0 18px 45px rgba(15,23,42,0.18);
+            /* 辅助色 */
+            --success-bg: #dcfce7;
+            --success-text: #166534;
+            --warn-bg: #ffedd5;
+            --warn-text: #9a3412;
+            --info-bg: #e0f2fe;
+            --info-text: #075985;
+
+            /* 布局变量 */
+            --container-width: 1000px;
+            --header-height: 70px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            
+            /* 阴影 */
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -4px rgba(15, 23, 42, 0.04);
+            --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.15);
+            --glow: 0 0 40px rgba(37, 99, 235, 0.15);
         }
 
+        /* 基础重置 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
+        html { scroll-behavior: smooth; font-size: 16px; }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
-            color: var(--primary);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-main);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 90%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.25s; }
-        ul { list-style: none; }
+        /* 滚动进度条 */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0; height: 3px;
+            background: var(--gradient-accent);
+            width: 0%; z-index: 9999;
+            transition: width 0.1s linear;
+        }
 
+        /* 字体排版 */
         h1, h2, h3, h4 {
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
             line-height: 1.2;
-            margin-bottom: 1rem;
+        }
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
+        h2 { font-size: 2rem; margin-bottom: 0.5rem; position: relative; display: inline-block; }
+        h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; font-size: 1rem; }
+        
+        .subtitle-en {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
             color: var(--primary);
-        }
-        h1 { font-size: 2.8rem; letter-spacing: -0.02em; }
-        h2 { font-size: 2.1rem; letter-spacing: -0.01em; margin-bottom: 2rem; text-align: center; }
-        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
-        p { margin-bottom: 1rem; color: var(--secondary); font-size: 0.98rem; }
-
-        .text-accent { color: var(--accent); }
-        .subtitle {
-            font-size: 1.05rem;
-            color: var(--secondary);
-            max-width: 720px;
-            margin: 0 auto 2.4rem auto;
-            text-align: center;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
+        a { text-decoration: none; color: inherit; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* 布局容器 */
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
@@ -65,291 +108,289 @@
         }
 
         section {
-            padding: var(--section-padding);
-            border-bottom: 1px solid var(--border);
-        }
-        section:last-child { border-bottom: none; }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            padding: 100px 0;
+            position: relative;
         }
 
-        .card {
-            background: var(--bg-card);
-            border-radius: var(--card-radius);
-            padding: 1.8rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #fff;
-            padding: 11px 28px;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(14,165,233,0.4);
-        }
-        .btn:hover { background-color: var(--accent-dark); }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 1rem;
-        }
-        .tag-blue { background: #e0f2fe; color: #0369a1; }
-        .tag-orange { background: #ffedd5; color: #c2410c; }
-        .tag-green { background: #dcfce7; color: #15803d; }
-
+        /* 悬浮导航栏 */
         header {
-            position: sticky;
-            top: 0;
-            background: rgba(248,250,252,0.96);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 900px;
             z-index: 1000;
-            padding: 0.75rem 0;
+            transition: all 0.3s ease;
         }
+        
         .nav-inner {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 999px;
+            padding: 12px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: var(--shadow-sm);
         }
+
         .logo {
             font-weight: 800;
             font-size: 1.1rem;
-            color: var(--primary);
-            letter-spacing: -0.01em;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .nav-links {
-            display: flex;
-            gap: 26px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .nav-links a { color: var(--secondary); }
-        .nav-links a:hover { color: var(--accent); }
 
+        .nav-links { display: flex; gap: 32px; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a { position: relative; color: var(--text-secondary); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--primary); transition: width 0.3s ease; border-radius: 2px;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hero Section */
         #hero {
-            padding: 96px 0 80px;
-            background: radial-gradient(circle at top, #e0f2fe 0%, #f8fafc 60%);
+            padding-top: 180px;
+            padding-bottom: 120px;
             text-align: center;
         }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+        .hero-desc {
+            max-width: 680px;
+            margin: 0 auto 40px;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+        }
+        
+        .btn-glow {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 16px 42px;
+            border-radius: 999px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.5);
+        }
 
-        .feature-list li {
+        /* 卡片通用样式 */
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            padding-left: 22px;
-            margin-bottom: 8px;
-            color: var(--secondary);
-            font-size: 0.93rem;
+            overflow: hidden;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+        /* 卡片顶部的彩色光晕 */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--gradient-accent); opacity: 0; transition: opacity 0.3s;
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* Grid 系统 */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+        /* 标签 */
+        .tag {
+            display: inline-flex; align-items: center;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.2rem;
+        }
+        .tag-blue { background: var(--info-bg); color: var(--info-text); }
+        .tag-orange { background: var(--warn-bg); color: var(--warn-text); }
+        .tag-green { background: var(--success-bg); color: var(--success-text); }
+
+        /* 列表样式 */
+        .feature-list li {
+            position: relative; padding-left: 24px; margin-bottom: 10px; font-size: 0.95rem;
         }
         .feature-list li::before {
-            content: "•";
-            position: absolute;
-            left: 7px;
-            color: var(--accent);
-            font-weight: 900;
+            content: ""; position: absolute; left: 0; top: 9px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--primary); opacity: 0.6;
         }
 
+        /* SWOT 矩阵 */
         .swot-box {
-            background: #f8fafc;
-            padding: 0.9rem 1rem;
-            border-radius: 8px;
-            margin-top: 0.8rem;
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
         }
         .swot-item {
-            font-size: 0.84rem;
-            margin-bottom: 4px;
+            display: flex; gap: 12px; margin-bottom: 12px; font-size: 0.9rem;
         }
         .swot-label {
-            font-weight: 700;
-            margin-right: 4px;
-            color: var(--primary);
+            flex-shrink: 0; width: 24px; height: 24px;
+            background: var(--text-main); color: #fff;
+            border-radius: 6px; font-weight: 700; font-size: 0.8rem;
+            display: flex; align-items: center; justify-content: center;
         }
 
+        /* 差异化暗色块 */
         .diff-box {
-            margin-top: 36px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            padding: 32px 32px 28px;
-            border-radius: var(--card-radius);
+            background: var(--gradient-dark);
+            color: #fff;
+            padding: 4rem;
+            border-radius: var(--radius-lg);
             text-align: center;
-        }
-        .diff-box h3 { color: #fff; margin-bottom: 0.6rem; }
-        .diff-comparison {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            font-size: 0.9rem;
-            margin-top: 12px;
-        }
-        .pill {
-            padding: 6px 14px;
-            border-radius: 999px;
-            border: 1px solid #334155;
-            font-size: 0.8rem;
-        }
-
-        .funnel-container {
-            display: flex;
-            justify-content: space-between;
-            margin: 32px 0 8px;
+            margin-top: 4rem;
             position: relative;
-        }
-        .funnel-step {
-            flex: 1;
-            background: #fff;
-            border: 1px solid var(--border);
-            padding: 18px 14px;
-            border-radius: 8px;
-            margin: 0 8px;
-            text-align: center;
-            position: relative;
-        }
-        .funnel-step h4 {
-            margin-bottom: 4px;
-            color: var(--accent);
-            font-size: 0.95rem;
-        }
-        .funnel-step p {
-            font-size: 0.82rem;
-            margin-bottom: 0;
-        }
-        .funnel-step:not(:last-child)::after {
-            content: "→";
-            position: absolute;
-            right: -16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #cbd5e1;
-            font-size: 1.4rem;
-        }
-
-        .market-split {
-            border: 1px solid var(--border);
-            border-radius: var(--card-radius);
             overflow: hidden;
-            display: flex;
+        }
+        .diff-box::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .diff-box h3 { color: #fff; }
+        .diff-box p { color: #cbd5e1; max-width: 700px; margin: 0 auto 1.5rem; }
+        
+        .diff-comparison {
+            display: inline-flex; align-items: center; gap: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.2);
             margin-top: 20px;
         }
-        .split-col {
-            flex: 1;
-            padding: 26px 24px;
-        }
-        .split-col:first-child {
-            background: #fff;
-            border-right: 1px solid var(--border);
-        }
-        .split-col:last-child {
-            background: #eff6ff;
+        .pill { font-size: 0.9rem; font-weight: 500; }
+        .vs-badge { 
+            font-size: 0.75rem; font-weight: 800; opacity: 0.6; font-style: italic; 
         }
 
-        .table-scroll {
-            overflow-x: auto;
+        /* 个人计划 - Timeline 风格 */
+        .timeline-card {
+            display: flex; gap: 24px;
+            margin-bottom: 32px;
+            background: var(--bg-surface);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
+        .timeline-card:hover {
+            border-left: 4px solid var(--primary);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+        .step-num {
+            font-size: 3rem; font-weight: 900; color: #f1f5f9; line-height: 1;
+            font-family: 'Inter', sans-serif;
+            min-width: 60px;
+        }
+        .step-content h3 { margin-bottom: 0.5rem; color: var(--text-main); font-size: 1.25rem; }
+
+        /* 总结部分 */
+        #summary { background: #fff; border-top: 1px solid #e2e8f0; }
+        .summary-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+        }
+        .summary-card li { margin-bottom: 1.2rem; }
+        .summary-card strong { color: var(--primary-dark); }
+
+        /* Footer */
+        footer {
+            background: var(--text-main);
+            color: var(--text-muted);
+            padding: 4rem 0;
+            text-align: center;
             font-size: 0.9rem;
         }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 10px 12px;
-            text-align: left;
-        }
-        th {
-            background: #e5f3ff;
-            font-weight: 600;
-            white-space: nowrap;
-        }
 
-        footer {
-            background: var(--primary);
-            color: #94a3b8;
-            padding: 32px 0;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
+        /* 响应式 */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .grid-2, .grid-3, .market-split {
-                display: flex;
-                flex-direction: column;
-            }
-            .funnel-container {
-                flex-direction: column;
-            }
-            .funnel-step {
-                margin: 8px 0;
-            }
-            .funnel-step:not(:last-child)::after {
-                content: "↓";
-                right: 50%;
-                top: auto;
-                bottom: -18px;
-                transform: translateX(50%);
-            }
-            .nav-links { display: none; }
-            header { padding: 0.6rem 0; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            header { width: 100%; top: 0; left: 0; transform: none; max-width: none; border-radius: 0; border: none; border-bottom: 1px solid #e2e8f0; }
+            .nav-inner { border-radius: 0; border: none; padding: 12px 20px; background: rgba(255,255,255,0.95); }
+            .nav-links { display: none; } /* 简化处理，移动端隐藏导航链接 */
+            .diff-box { padding: 2.5rem 1.5rem; }
+            .diff-comparison { flex-direction: column; gap: 8px; border-radius: 16px; width: 100%; }
+            .timeline-card { flex-direction: column; gap: 10px; }
+            .step-num { font-size: 2rem; color: var(--primary); opacity: 0.2; }
         }
     </style>
 </head>
 <body>
 
+<!-- 滚动进度条 -->
+<div class="scroll-progress" id="progressBar"></div>
+
 <header>
-    <div class="container nav-inner">
-        <div class="logo">INNwowo 市场分析报告</div>
+    <div class="nav-inner">
+        <div class="logo">INNwowo Report</div>
         <nav class="nav-links">
             <a href="#company">公司与产品</a>
             <a href="#industry">行业与竞品</a>
-            <a href="#strategy">市场策略</a>
+            <a href="#plan">市场策略</a>
             <a href="#summary">总结</a>
         </nav>
     </div>
 </header>
 
 <section id="hero">
-    <div class="container">
-        <span class="tag tag-blue">Market Insight</span>
-        <h1>INNwowo 市场分析与<br>拓展策略概览</h1>
-        <p class="subtitle">
+    <div class="container" data-aos="fade-up" data-aos-duration="1000">
+        <div class="hero-badge">✨ Market Insight</div>
+        <h1>INNwowo 市场分析与<br><span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">拓展策略概览</span></h1>
+        <p class="hero-desc">
             结合 INNwowo 官网、小程序及公开行业数据，对公司定位、产品体系、商业模式、
             配送方案及未来市场策略做出结构化分析。
         </p>
-        <a href="#company" class="btn">开始阅读</a>
+        <a href="#company" class="btn-glow">开始阅读</a>
     </div>
 </section>
 
 <!-- Q1 公司与产品 -->
 <section id="company">
     <div class="container">
-        <h2>公司与产品体系<br><span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">Company & Product Ecosystem</span></h2>
+        <div class="text-center" style="margin-bottom: 3rem;" data-aos="fade-up">
+            <h2>公司与产品体系</h2>
+            <span class="subtitle-en">Company & Product Ecosystem</span>
+        </div>
 
         <div class="grid-3">
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
                 <span class="tag tag-blue">Positioning</span>
                 <h3>餐饮数字化工具（SaaS）</h3>
                 <p>
@@ -363,7 +404,7 @@
                 </ul>
             </div>
 
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
                 <span class="tag tag-green">Product · 本地英文系统</span>
                 <h3>Dine-in & Online Ordering</h3>
                 <p>面向英国本地客群的 Web 端英文点餐系统，无需下载 App，商家可通过后台配置菜单与价格。</p>
@@ -374,7 +415,7 @@
                 </ul>
             </div>
 
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
                 <span class="tag tag-orange">Product · 小程序系统</span>
                 <h3>WeChat 外卖小程序</h3>
                 <p>依托微信生态，为华人餐厅与用户提供线上点餐、外卖和自取入口，是商家构建私域外卖能力的重要工具。</p>
@@ -390,57 +431,56 @@
 
 <section id="industry">
     <div class="container">
-        <h2>行业发展与竞品格局<br>
-            <span style="font-size:1.1rem;font-weight:400;color:var(--secondary)">
-                Industry Trends & Competitive Landscape
-            </span>
-        </h2>
+        <div style="margin-bottom: 3rem;" data-aos="fade-right">
+            <h2>行业发展与竞品格局</h2>
+            <span class="subtitle-en">Industry Trends & Competitive Landscape</span>
+        </div>
 
-        <!-- 行业趋势：更务实、更有个人判断 -->
-        <div class="grid-3" style="margin-bottom:32px;">
-            <div>
-                <h4 class="text-accent">📈 外卖整体增速放缓，但结构性需求依然坚挺</h4>
-                <p style="font-size:0.9rem;">
+        <!-- 行业趋势 -->
+        <div class="grid-3" style="margin-bottom:48px;">
+            <div data-aos="fade-up" data-aos-delay="0">
+                <h4 style="color:var(--primary);margin-bottom:12px;">📈 外卖整体增速放缓，但结构性需求依然坚挺</h4>
+                <p style="font-size:0.95rem;">
                     公开数据（如 UK Hospitality、Statista）显示，疫情高峰过后，英国在线外卖整体增速有所回落，
                     但中餐、东南亚餐饮等高复购品类的需求依旧稳定。对餐厅来说，平台流量仍然重要，
                     但“平台依赖度过高 + 抽佣压力大”正在成为新痛点。
                 </p>
-                <p style="font-size:0.86rem;color:var(--secondary);">
+                <p style="font-size:0.85rem;color:var(--text-muted);border-left:2px solid var(--primary);padding-left:12px;">
                     我的判断：外卖不是“暴增期”了，但“优化结构、降低平台依赖”的需求正在增强，
                     这给了像 INNwowo 这样的低佣工具型产品一个很明确的切入窗口。
                 </p>
             </div>
 
-            <div>
-                <h4 class="text-accent">💰 人工与租金推着小店走向数字化，而不是概念驱动</h4>
-                <p style="font-size:0.9rem;">
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h4 style="color:var(--primary);margin-bottom:12px;">💰 人工与租金推着小店走向数字化</h4>
+                <p style="font-size:0.95rem;">
                     英国餐饮业最低时薪持续上升，前厅与厨房用工都越来越难招、越来越贵。
                     扫码点餐、线上自助下单不再只是“体验升级”，而是非常现实的“能不能少请一位服务员”的问题。
                 </p>
-                <p style="font-size:0.86rem;color:var(--secondary);">
+                <p style="font-size:0.85rem;color:var(--text-muted);border-left:2px solid var(--primary);padding-left:12px;">
                     我的判断：在这种环境下，SaaS 点餐工具的核心卖点其实很朴素——
                     不用讲“数字化转型”，直接算清楚一班人手能省多少工资，转化效率会更高。
                 </p>
             </div>
 
-            <div>
-                <h4 class="text-accent">📱 扫码点餐习惯已经形成，用户心智不会再“回到纸菜单”</h4>
-                <p style="font-size:0.9rem;">
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h4 style="color:var(--primary);margin-bottom:12px;">📱 扫码点餐习惯已经形成</h4>
+                <p style="font-size:0.95rem;">
                     疫情三年让英国消费者对 QR 点餐迅速完成教育，尤其是 18–35 岁人群。
                     对中餐这类 SKU 多、选项复杂的品类，扫码反而比靠服务员口头解释更清晰，
                     同时也更友好地支持多语言菜单。
                 </p>
-                <p style="font-size:0.86rem;color:var(--secondary);">
+                <p style="font-size:0.85rem;color:var(--text-muted);border-left:2px solid var(--primary);padding-left:12px;">
                     我的判断：扫码点餐的渗透率一旦建立，很难再回头。
                     INNwowo 所在的品类属于“长期趋势受益方”，不是短期热点。
                 </p>
             </div>
         </div>
 
-        <!-- 竞品分析：Deliveroo & HungryPanda -->
+        <!-- 竞品分析 -->
         <div class="grid-2">
-            <div class="card">
-                <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card" data-aos="fade-up">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
                     <h3>Deliveroo</h3>
                     <span class="tag tag-blue">综合外卖平台</span>
                 </div>
@@ -467,14 +507,14 @@
                         商家同时在寻找“自营渠道 + 工具型产品”来对冲平台依赖和利润挤压。
                     </div>
                 </div>
-                <p style="font-size:0.86rem;margin-top:0.6rem;">
-                    我的观点：Deliveroo 的价值在“带客流”，而不是“帮餐厅省钱”。
+                <p style="font-size:0.85rem;margin-top:1rem;color:var(--text-secondary);">
+                    <strong>我的观点：</strong>Deliveroo 的价值在“带客流”，而不是“帮餐厅省钱”。
                     商家不会因为 Deliveroo 降本，只会因为 Deliveroo 获客。
                 </p>
             </div>
 
-            <div class="card">
-                <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
                     <h3>HungryPanda</h3>
                     <span class="tag tag-orange">华人垂直平台</span>
                 </div>
@@ -500,29 +540,28 @@
                         随着商家私域意识增强，部分订单可能会逐步从平台迁移到自营渠道。
                     </div>
                 </div>
-                <p style="font-size:0.86rem;margin-top:0.6rem;">
-                    我的观点：HungryPanda 更像是一个“人群型平台”，擅长链接华人食客，
+                <p style="font-size:0.85rem;margin-top:1rem;color:var(--text-secondary);">
+                    <strong>我的观点：</strong>HungryPanda 更像是一个“人群型平台”，擅长链接华人食客，
                     但很难解决商家“降本”和“沉淀老客”的问题，这恰恰是 SaaS 工具的机会所在。
                 </p>
             </div>
         </div>
 
         <!-- 差异化定位 -->
-        <div class="diff-box">
+        <div class="diff-box" data-aos="zoom-in-up">
             <h3>差异化定位：平台卖流量，INNwowo 卖工具</h3>
-            <p style="font-size:0.92rem;">
+            <p>
                 Deliveroo / HungryPanda 等外卖平台的商业逻辑，是通过聚合用户流量和自建骑手网络，
                 以较高抽佣覆盖流量成本与配送成本；INNwowo 的核心逻辑则是提供一套
                 <strong>低抽佣或零抽佣的点餐与外卖工具</strong>，帮助商家提升效率、保留老客，并适度对接第三方配送。
             </p>
-            <p style="font-size:0.9rem;margin-top:0.4rem;">
-                用一句话概括我的理解：
-                <strong>Deliveroo 卖的是流量，HungryPanda 卖的是人群场景，INNwowo 卖的是商家自营能力。</strong>
-                平台负责“让客人找到你”，工具负责“让你在不多亏的前提下把客人服务好”，两者未来更可能长期共存，而不是互相替代。
+            <p>
+                用一句话概括我的理解：<br>
+                <span style="color:#ffffff; font-weight:600;">Deliveroo 卖的是流量，HungryPanda 卖的是人群场景，INNwowo 卖的是商家自营能力。</span>
             </p>
             <div class="diff-comparison">
                 <span class="pill">INNwowo · 商家自营 / SaaS 收费</span>
-                <span style="font-size:0.8rem;color:#9ca3af;">VS</span>
+                <span class="vs-badge">VS</span>
                 <span class="pill">外卖平台 · 流量 + 骑手 / 抽佣收费</span>
             </div>
         </div>
@@ -531,164 +570,185 @@
 
 <section id="plan">
     <div class="container">
-        <h2>
-            我入职后的核心投入方向<br>
-            <span style="font-size:1.1rem;font-weight:400;color:var(--secondary);">
-                What I Would Focus On at INNwowo
-            </span>
-        </h2>
-
-        <div class="card">
-            <h3>1. 对当前阶段的判断（务实版）</h3>
-            <p>
-                经过对 INNwowo 的产品、商家规模和市场位置的了解，我的判断是：
-                <strong>公司现在处在“工具基建已稳定 → 开始横向扩展”的阶段。</strong>
-                点餐 / 外卖系统本身已经具备成熟的产品力，商家端的教育基本完成，增长路径也比较清晰（扩城市、扩商家）。
-            </p>
-            <p>
-                从邮件中提到的“后期将有更深层面的战略部署”来看，我认为公司接下来的增长点不会只停留在
-                工具模式，而会进入更大的生态场景布局。这一点，对我个人来说反而是吸引力所在。
-            </p>
+        <div style="margin-bottom: 3rem;" data-aos="fade-up">
+            <h2>我入职后的核心投入方向</h2>
+            <span class="subtitle-en">What I Would Focus On at INNwowo</span>
         </div>
 
-        <div class="card">
-            <h3>2. 我更希望参与的，是从 0 到 1 的品牌 / 新店探索</h3>
-            <p>
-                尽管我能做市场、策略和用户增长，但我真正想投入的方向，是
-                <strong>新品牌、新店型和新业态从 0 到 1 的验证。</strong>
-            </p>
-            <p>
-                在英国生活的这些年，我对英国中餐一直有一个真实的感受：不是不正宗，只是停留在一个时代太久。
-                装修、体验、菜单、服务，大部分中餐馆还维持在“够用、能吃”这个维度。相比之下，
-                像 Circolo Popolare、Gloria 这样的意大利餐厅，Roka、Bone Daddies 这样的日本餐厅，
-                以及 MEATliquor、Five Guys 这样的美式品牌，它们建立的是“体验型认知”。
-            </p>
-            <p>
-                英国的新式中餐空间其实很大，但缺少系统化构建能力。我更想参与的是：
-                <strong>店铺定位、体验设计、SKU 结构、内容体系，以及真实可落地的 MVP 打磨。</strong>
-            </p>
-        </div>
+        <!-- Timeline Style -->
+        <div class="timeline-wrapper">
+            
+            <div class="timeline-card" data-aos="fade-left">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h3>对当前阶段的判断（务实版）</h3>
+                    <p>
+                        经过对 INNwowo 的产品、商家规模和市场位置的了解，我的判断是：
+                        <strong>公司现在处在“工具基建已稳定 → 开始横向扩展”的阶段。</strong>
+                        点餐 / 外卖系统本身已经具备成熟的产品力，商家端的教育基本完成，增长路径也比较清晰（扩城市、扩商家）。
+                    </p>
+                    <p>
+                        从邮件中提到的“后期将有更深层面的战略部署”来看，我认为公司接下来的增长点不会只停留在
+                        工具模式，而会进入更大的生态场景布局。这一点，对我个人来说反而是吸引力所在。
+                    </p>
+                </div>
+            </div>
 
-        <div class="card">
-            <h3>3. 我能真正贡献的能力（不是空想）</h3>
-            <p>我更倾向承担“部分责任”而不是“纯执行”。具体能做的事情包括：</p>
-            <ul>
-                <li>英国不同城市的餐饮定位与客群判断</li>
-                <li>新店从 0 → 1 的整体规划（定位 / 场景 / 产品组合）</li>
-                <li>中餐现代化表达的对比研究与本地化调整</li>
-                <li>品牌故事、内容结构、用户视角的传播路径</li>
-                <li>SKU 与菜单逻辑的效率优化（成本、动线、复购逻辑）</li>
-                <li>轻量化 MVP 门店的测试、迭代与调优</li>
-            </ul>
-            <p>
-                这些不是“理想型能力”，而是我过去经历中真实能够落地的部分。
-            </p>
-        </div>
+            <div class="timeline-card" data-aos="fade-left" data-aos-delay="100">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h3>我更希望参与的，是从 0 到 1 的品牌 / 新店探索</h3>
+                    <p>
+                        尽管我能做市场、策略和用户增长，但我真正想投入的方向，是
+                        <strong>新品牌、新店型和新业态从 0 到 1 的验证。</strong>
+                    </p>
+                    <p>
+                        在英国生活的这些年，我对英国中餐一直有一个真实的感受：不是不正宗，只是停留在一个时代太久。
+                        装修、体验、菜单、服务，大部分中餐馆还维持在“够用、能吃”这个维度。相比之下，
+                        像 Circolo Popolare、Gloria 这样的意大利餐厅，Roka、Bone Daddies 这样的日本餐厅，
+                        以及 MEATliquor、Five Guys 这样的美式品牌，它们建立的是“体验型认知”。
+                    </p>
+                    <p>
+                        英国的新式中餐空间其实很大，但缺少系统化构建能力。我更想参与的是：
+                        <strong>店铺定位、体验设计、SKU 结构、内容体系，以及真实可落地的 MVP 打磨。</strong>
+                    </p>
+                </div>
+            </div>
 
-        <div class="card">
-            <h3>4. 结合 INNwowo 的未来潜力（我看到的可能性）</h3>
-            <p>
-                INNwowo 在工具端已经建立了稳定结构：数据、商家资源、餐饮理解、产品积累。
-                如果未来公司要涉足品牌、连锁、投资、新店模型，这些基础反而会成为一个
-                <strong>非常自然的第二增长曲线。</strong>
-            </p>
-            <p>
-                我相信公司的判断是准确的：“我们不招员工，只培养合伙人。”
-                对我来说，这个定位比“岗位职责”更有吸引力，也符合我想参与的方式。
-            </p>
-        </div>
+            <div class="timeline-card" data-aos="fade-left" data-aos-delay="200">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <h3>我能真正贡献的能力（不是空想）</h3>
+                    <p>我更倾向承担“部分责任”而不是“纯执行”。具体能做的事情包括：</p>
+                    <ul class="feature-list">
+                        <li>英国不同城市的餐饮定位与客群判断</li>
+                        <li>新店从 0 → 1 的整体规划（定位 / 场景 / 产品组合）</li>
+                        <li>中餐现代化表达的对比研究与本地化调整</li>
+                        <li>品牌故事、内容结构、用户视角的传播路径</li>
+                        <li>SKU 与菜单逻辑的效率优化（成本、动线、复购逻辑）</li>
+                        <li>轻量化 MVP 门店的测试、迭代与调优</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="card">
-            <h3>5. 我的加入愿景（收敛而真实）</h3>
-            <p>
-                我不会用“改变英国中餐”这样过度理想化的语言来表达愿景。更准确地说，我希望参与：
-            </p>
-            <ul>
-                <li>一个新店或新品牌从 0 到 1 的构建过程</li>
-                <li>中餐在英国更当代、更有体验感的呈现方式</li>
-                <li>结合 INNwowo 现有优势形成的新餐饮模型</li>
-                <li>真正能留下长期价值的事情，而不是临时性的推广</li>
-            </ul>
-            <p>
-                如果公司的下一步方向确实包含餐饮投资、品牌打造、门店实验等更深层次的布局，
-                那是我愿意认真投入、也愿意承担责任的部分。
-            </p>
+            <div class="timeline-card" data-aos="fade-left" data-aos-delay="300">
+                <div class="step-num">04</div>
+                <div class="step-content">
+                    <h3>结合 INNwowo 的未来潜力（我看到的可能性）</h3>
+                    <p>
+                        INNwowo 在工具端已经建立了稳定结构：数据、商家资源、餐饮理解、产品积累。
+                        如果未来公司要涉足品牌、连锁、投资、新店模型，这些基础反而会成为一个
+                        <strong>非常自然的第二增长曲线。</strong>
+                    </p>
+                    <p>
+                        我相信公司的判断是准确的：“我们不招员工，只培养合伙人。”
+                        对我来说，这个定位比“岗位职责”更有吸引力，也符合我想参与的方式。
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-card" data-aos="fade-left" data-aos-delay="400">
+                <div class="step-num">05</div>
+                <div class="step-content">
+                    <h3>我的加入愿景（收敛而真实）</h3>
+                    <p>我不会用“改变英国中餐”这样过度理想化的语言来表达愿景。更准确地说，我希望参与：</p>
+                    <ul class="feature-list">
+                        <li>一个新店或新品牌从 0 到 1 的构建过程</li>
+                        <li>中餐在英国更当代、更有体验感的呈现方式</li>
+                        <li>结合 INNwowo 现有优势形成的新餐饮模型</li>
+                        <li>真正能留下长期价值的事情，而不是临时性的推广</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
 <section id="summary" style="background:#ffffff;">
-    <div class="container" style="max-width:820px;">
+    <div class="container" style="max-width:850px;">
+        <div class="text-center" style="margin-bottom: 3rem;" data-aos="fade-up">
+            <h2>结论与个人判断</h2>
+            <span class="subtitle-en">Summary & Reflections</span>
+        </div>
 
-        <h2>
-            结论与个人判断<br>
-            <span style="font-size:1.1rem;font-weight:400;color:var(--secondary);">
-                Summary & Reflections
-            </span>
-        </h2>
-
-        <div class="card" style="background:var(--bg-body);">
-
+        <div class="summary-card" data-aos="zoom-in" data-aos-duration="800">
             <ul class="feature-list">
-
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>1. INNwowo 处于稳定基础上的扩展阶段。</strong><br>
                     点餐 / 外卖系统已经形成产品稳定性，商家教育也基本完成。
                     当前的增长路径以「扩城市、扩商家」为主，是一个相对明确且健康的阶段。
                 </li>
 
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>2. 工具业务本身有天花板，但公司的未来空间不止于 SaaS。</strong><br>
                     在公司邮件中提到“后期将有更深层面的战略部署”，结合背后餐饮投资体系，
                     我认为 INNwowo 的第二增长曲线，将在更大的生态场景里，而不仅是软件本身。
                 </li>
 
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>3. 工具模式务实且符合英国市场：轻、稳、不重资产。</strong><br>
                     订阅费 + 支付通道费 + 第三方配送，对公司而言是可持续的模式。
                     不做平台式重骑手网络，是基于现实的正确选择。
                 </li>
 
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>4. 市场结构决定：工具与平台不是替代关系，而是长期共存。</strong><br>
                     平台负责获客（Deliveroo 等），工具负责成本与效率（INNwowo）。
                     这是英国本地餐饮市场的结构性特征，不会因为单一产品的出现而被颠覆。
                 </li>
 
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>5. 如果我加入，我希望参与的不只是增长，而是更深层的品牌与业态探索。</strong><br>
                     工具增长有固定玩法，但“从 0 到 1 的餐饮品牌 / 新店型 / 新体验”是更能建立差异化、
                     也更能产生长期价值的部分，而这与公司的资源布局是匹配的。
                 </li>
 
-                <li style="margin-bottom:0.9rem;">
+                <li>
                     <strong>6. 我能补位的方向，是品牌构建 + 餐饮定位 + 用户体验 + 内容表达。</strong><br>
                     更愿意承担具体责任，而不是执行任务；更适合做“合伙人模式”下的一部分事情，
                     而不是传统意义的岗位工作。这也与公司“不招员工，只培养合伙人”的理念自然契合。
                 </li>
 
-                <li>
+                <li style="margin-top:24px; border-top: 1px dashed #cbd5e1; padding-top:24px;">
                     <strong>7. 最终判断：</strong><br>
                     对我而言，INNwowo 目前的状态既稳定又有上升空间，
                     是可以“做成更大事情”的土壤。我希望参与的不是短期项目，而是长期价值的构建，
                     无论是工具生态，还是品牌 / 餐饮业态的下一步探索。
                 </li>
-
             </ul>
-
         </div>
     </div>
 </section>
 
-
 <footer>
     <div class="container">
-        <p style="margin-bottom:6px;">INNwowo Market Insight & Strategy · Personal Submission</p>
-        <p style="opacity:0.75;">
+        <p style="margin-bottom:8px; color:#fff;">INNwowo Market Insight & Strategy · Personal Submission</p>
+        <p style="opacity:0.5; font-size: 0.8rem;">
             本页面基于公开资料与个人对英国餐饮及数字化行业的理解，仅作为本人应聘的分析展示使用。
         </p>
     </div>
 </footer>
+
+<!-- 引入 AOS 动画脚本 -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 初始化 AOS
+    AOS.init({
+        offset: 80,
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true
+    });
+
+    // 滚动进度条逻辑
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
+</script>
 
 </body>
 </html>
